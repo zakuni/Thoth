@@ -4,15 +4,13 @@
 
     <h1>THOTH</h1>
     <ul>
-      <li>
-        <a href='/rugby'>Rugby</a>
-      </li>
-      <li>
-        <a href='/futsal'>Futsal</a>
-      </li>
-      <li>
-        <a href='/badminton'>Badminton</a>
-      </li>
+      @sports.map { sport =>
+        <li>
+          <a href='/@sport.name.toLowerCase'>
+            @sport.name
+          </a>
+        </li>
+      }
     </ul>
     
 }
