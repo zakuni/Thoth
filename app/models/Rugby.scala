@@ -1,3 +1,3 @@
 package models
 
-class Rugby extends Sport
+class Rugby extends Sport("Rugby")

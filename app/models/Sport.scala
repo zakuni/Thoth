@@ -1,6 +1,6 @@
 package models
 
-case class Sport()
+case class Sport(name: String)
 
 object Sport { 
 

@@ -1,3 +1,3 @@
 package models
 
-class Futsal extends Sport
+class Futsal extends Sport("Futsal")
