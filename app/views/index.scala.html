@@ -1,7 +1,18 @@
-@(message: String)
+@(sports: List[Sport])
 
-@main("Welcome to Play 2.0") {
-    
-    @play20.welcome(message)
+@main("THOTH") {
+
+    <h1>THOTH</h1>
+    <ul>
+      <li>
+        <a href='/rugby'>Rugby</a>
+      </li>
+      <li>
+        <a href='/futsal'>Futsal</a>
+      </li>
+      <li>
+        <a href='/badminton'>Badminton</a>
+      </li>
+    </ul>
     
 }
