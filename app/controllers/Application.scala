@@ -13,15 +13,17 @@ object Application extends Controller {
     Ok(views.html.index(list))
   }
 
-  def rugby = Action { 
-    Ok(views.html.schedule(new Rugby))
-  }
-
-  def futsal = Action { 
-    Ok(views.html.schedule(new Futsal))
-  }
-
-  def badminton = Action { 
-    Ok(views.html.schedule(new Badminton))
+  def schedule(sport: String) = Action {
+    sport match { 
+      case "rugby" => { 
+        Ok(views.html.schedule(new Rugby))
+      }
+      case "futsal" => { 
+        Ok(views.html.schedule(new Futsal))
+      }
+      case "badminton" => { 
+        Ok(views.html.schedule(new Badminton))
+      }
+    }
   }
 }
