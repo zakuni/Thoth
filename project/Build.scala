@@ -9,7 +9,8 @@ object ApplicationBuild extends Build {
 
     val appDependencies = Seq(
       // Add your project dependencies here,
-      "net.databinder.dispatch" %% "dispatch-core" % "0.9.4"
+      "net.databinder" %% "dispatch-http" % "0.8.8",
+      "nu.validator.htmlparser" % "htmlparser" % "1.4"
     )
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
