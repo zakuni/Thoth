@@ -19,6 +19,6 @@ object Application extends Controller {
       case "futsal"    => { new Futsal }
       case "badminton" => { new Badminton }
     }
-    Ok(views.html.schedule(s))
+    Ok(views.html.schedule(s, s.schedule))
   }
 }

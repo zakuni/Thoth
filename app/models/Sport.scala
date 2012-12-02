@@ -8,8 +8,8 @@ import nu.validator.htmlparser.common.XmlViolationPolicy
 import nu.validator.htmlparser.sax.HtmlParser
 import org.xml.sax.InputSource
 
-class Sport(val name: String) {
-  var schedule = List[String]()
+abstract class Sport(val name: String) {
+  lazy val schedule = requestSchedule()
 
   def toNode(is: InputStream): Node = {
     val hp = new HtmlParser
@@ -21,6 +21,8 @@ class Sport(val name: String) {
 
     saxer.rootElem
   }
+
+  def requestSchedule(): Schedule
 
   def request(siteUrl: String): Http.HttpPackage[scala.xml.Node] = { 
     val u = url(siteUrl) >> { is => toNode(is) }
