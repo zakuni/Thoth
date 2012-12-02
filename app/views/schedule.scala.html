@@ -13,9 +13,11 @@
       </thead>
       <tbody>
         @schedule.games.map { game =>
-        @game._2.map { g =>
+        @game._2.zipWithIndex.map{case(g, i) =>
         <tr>
-          <td>@game._1.toString("dd EEE")</td>
+          @if(i == 0){
+          <td rowspan=@game._2.length>@game._1.toString("dd EEE")</td>
+          }
           <td>@g</td>
         </tr>
         }
