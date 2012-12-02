@@ -14,16 +14,11 @@ object Application extends Controller {
   }
 
   def schedule(sport: String) = Action {
-    sport match { 
-      case "rugby" => { 
-        Ok(views.html.schedule(new Rugby))
-      }
-      case "futsal" => { 
-        Ok(views.html.schedule(new Futsal))
-      }
-      case "badminton" => { 
-        Ok(views.html.schedule(new Badminton))
-      }
+    val s: Sport = sport match { 
+      case "rugby"     => { new Rugby }
+      case "futsal"    => { new Futsal }
+      case "badminton" => { new Badminton }
     }
+    Ok(views.html.schedule(s))
   }
 }
