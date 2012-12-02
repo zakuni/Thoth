@@ -32,7 +32,6 @@ class Rugby extends Sport("Rugby") {
         }
       }
     }
-    println(m)
     new Schedule(m.toMap)
   }
 }
