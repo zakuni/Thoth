@@ -23,11 +23,11 @@ class Rugby extends Sport("Rugby") {
         
         if (td \ "@class" contains Text("cal_dtl")) {
           if (m.contains(date)) {
-            var tmplist = m(date) += td.text
+            var tmplist = m(date) += td.text.trim
             m.remove(date)
             m.put(date, tmplist)
           } else {
-            m.put(date, ListBuffer(td.text))
+            m.put(date, ListBuffer(td.text.trim))
           }
         }
       }
