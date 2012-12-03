@@ -2,16 +2,18 @@
 
 @main("THOTH") {
 
-    <h1>THOTH</h1>
-    <h2>Sports</h2>
-    <ul>
-      @sports.map { sport =>
-        <li>
-          <a href='/schedule/@sport.name.toLowerCase'>
-            @sport.name
-          </a>
-        </li>
-      }
-    </ul>
+<div class="page-header">
+  <h1>THOTH</h1>
+</div>
+<h2>Sports</h2>
+<ul>
+  @sports.map { sport =>
+  <li>
+    <a href='/schedule/@sport.name.toLowerCase'>
+      @sport.name
+    </a>
+  </li>
+  }
+</ul>
     
 }
