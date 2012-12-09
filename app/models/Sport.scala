@@ -6,10 +6,11 @@ import scala.xml.parsing.NoBindingFactoryAdapter
 import dispatch._
 import nu.validator.htmlparser.common.XmlViolationPolicy
 import nu.validator.htmlparser.sax.HtmlParser
+import org.scala_tools.time.Imports._
 import org.xml.sax.InputSource
 
-abstract class Sport(val name: String) {
-  lazy val schedule = requestSchedule()
+abstract class Sport(val name: String, var date: DateTime=DateTime.now) {
+  lazy val schedule = requestSchedule(date)
 
   def toNode(is: InputStream): Node = {
     val hp = new HtmlParser
@@ -22,9 +23,9 @@ abstract class Sport(val name: String) {
     saxer.rootElem
   }
 
-  def requestSchedule(): Schedule
+  def requestSchedule(date: DateTime): Schedule
 
-  def request(siteUrl: String): Http.HttpPackage[scala.xml.Node] = { 
+  protected def request(siteUrl: String): Http.HttpPackage[scala.xml.Node] = { 
     val u = url(siteUrl) >> { is => toNode(is) }
     val h = new Http
     h(u)

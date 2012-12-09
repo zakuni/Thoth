@@ -7,27 +7,30 @@ import org.scala_tools.time.Imports._
 
 class Rugby extends Sport("Rugby") {
 
-  def requestSchedule(): Schedule = {
-    val node = request("http://www.rugby-japan.jp/calendar/calendar_2012_12.html")
+  def requestSchedule(date: DateTime): Schedule = {
+    val node = request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(date.toString("yyyy"), date.toString("MM")))
     val cal_main = node \\ "div" filter (_ \ "@id" contains Text("cal_main"))
     val trs = (cal_main \\ "tr").theSeq
 
-    var date = new DateTime(2012, 12, 1, 0, 0)
-
     val m: MutableMap[DateTime, ListBuffer[String]] = MutableMap()
+    var keydate = date
     trs.foreach { tr =>
       tr.child.foreach { td =>
+        // 日付
         if (td \ "@class" contains Text("cal_date")) { 
-          date = date.day(td.text)
+          keydate = keydate.day(td.text)
         }
-        
+
+        // 日付と試合のリストのマップを作る
         if (td \ "@class" contains Text("cal_dtl")) {
-          if (m.contains(date)) {
-            var tmplist = m(date) += td.text.trim
-            m.remove(date)
-            m.put(date, tmplist)
+          /* 日付が既にマップのキーとして存在していたら、試合のリストを変更する
+           * まだなければ、新しく日付と試合リストのペアをマップに追加する */
+          if (m.contains(keydate)) {
+            val tmplist = m(keydate) += td.text.trim
+            m.remove(keydate)
+            m.put(keydate, tmplist)
           } else {
-            m.put(date, ListBuffer(td.text.trim))
+            m.put(keydate, ListBuffer(td.text.trim))
           }
         }
       }
