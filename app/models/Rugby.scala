@@ -5,7 +5,10 @@ import scala.xml.Text
 import scala.xml.XML
 import org.scala_tools.time.Imports._
 
-class Rugby extends Sport("Rugby") {
+class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
+
+  // 年月を指定する時用の補助コンストラクタ
+  def this(year: Int, month: Int) = this(new DateTime(year, month, 1, 0, 0))
 
   def requestSchedule(date: DateTime): Schedule = {
     val year = date.toString("yyyy")
@@ -18,7 +21,7 @@ class Rugby extends Sport("Rugby") {
     var keydate = date
     trs.foreach { tr =>
       tr.child.foreach { td =>
-        // 日付
+        // 日付部分
         if (td \ "@class" contains Text("cal_date")) { 
           keydate = keydate.day(td.text)
         }

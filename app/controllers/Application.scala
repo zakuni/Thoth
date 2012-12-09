@@ -15,7 +15,7 @@ object Application extends Controller {
 
   def schedule(sport: String, year: String, month: String) = Action {
     val s: Sport = sport match { 
-      case "rugby"     => { new Rugby }
+      case "rugby"     => { new Rugby(year.toInt, month.toInt) }
       case "futsal"    => { new Futsal }
       case "badminton" => { new Badminton }
     }
