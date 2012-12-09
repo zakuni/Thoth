@@ -10,6 +10,7 @@ import org.scala_tools.time.Imports._
 import org.xml.sax.InputSource
 
 abstract class Sport(val name: String, var date: DateTime=DateTime.now) {
+  val ref: List[String]
   lazy val schedule = requestSchedule(date)
 
   def toNode(is: InputStream): Node = {

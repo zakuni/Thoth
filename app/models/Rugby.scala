@@ -6,7 +6,7 @@ import scala.xml.XML
 import org.scala_tools.time.Imports._
 
 class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
-
+  val ref = List("ラグビーカレンダー - 日本ラグビーフットボール協会（JRFU）", "http://www.rugby-japan.jp/calendar/index.html")
   // 年月を指定する時用の補助コンストラクタ
   def this(year: Int, month: Int) = this(new DateTime(year, month, 1, 0, 0))
 

@@ -6,9 +6,8 @@
 <div class="page-header">
   <h1><a href='/'>THOTH</a></h1>
 </div>
-<h2>@sport.name</h2>
-@schedule.previousMonth
-@schedule.nextMonth
+<h2>@sport.name <small>ref. <a href="@sport.ref(1)">@sport.ref(0)</a></small></h2>
+
 <table class="table">
   <thead>
     <tr>
@@ -28,5 +27,13 @@
     }
   </tbody>
 </table>
+<ul class="pager">
+  <li class="previous">
+    <a href="/@sport.name.toLowerCase/@schedule.previousMonth">&larr; @schedule.previousMonth</a>
+  </li>
+  <li class="next">
+    <a href="/@sport.name.toLowerCase/@schedule.nextMonth">@schedule.nextMonth &rarr;</a>
+  </li>
+</ul>
 
 }
