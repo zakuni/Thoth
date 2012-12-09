@@ -9,4 +9,6 @@ GET     /                           controllers.Application.index
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Schedule
-GET     /schedule/:sport            controllers.Application.schedule(sport)
+GET     /:sport/:year/:month        controllers.Application.schedule(sport, year, month)
+
+GET     /:sport                     controllers.Application.schedule(sport, year=null, month=null)

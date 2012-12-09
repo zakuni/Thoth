@@ -4,6 +4,8 @@ import org.scala_tools.time.Imports._
 
 class Futsal extends Sport("Futsal") { 
   def requestSchedule(date: DateTime): Schedule = { 
-    new Schedule(Map(new DateTime() -> ListBuffer("")))
+    val year = date.toString("yyyy")
+    val month = date.toString("MM")
+    new Schedule(year.toInt, month.toInt, Map(new DateTime() -> ListBuffer("")))
   }
 }

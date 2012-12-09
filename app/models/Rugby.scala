@@ -8,7 +8,9 @@ import org.scala_tools.time.Imports._
 class Rugby extends Sport("Rugby") {
 
   def requestSchedule(date: DateTime): Schedule = {
-    val node = request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(date.toString("yyyy"), date.toString("MM")))
+    val year = date.toString("yyyy")
+    val month = date.toString("MM")
+    val node = request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(year, month))
     val cal_main = node \\ "div" filter (_ \ "@id" contains Text("cal_main"))
     val trs = (cal_main \\ "tr").theSeq
 
@@ -35,6 +37,6 @@ class Rugby extends Sport("Rugby") {
         }
       }
     }
-    new Schedule(m.toMap)
+    new Schedule(year.toInt, month.toInt, m.toMap)
   }
 }

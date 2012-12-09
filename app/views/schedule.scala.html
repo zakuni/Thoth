@@ -7,10 +7,12 @@
   <h1><a href='/'>THOTH</a></h1>
 </div>
 <h2>@sport.name</h2>
+@schedule.previousMonth
+@schedule.nextMonth
 <table class="table">
   <thead>
     <tr>
-      <th colspan=2>2012/12</th>
+      <th colspan=2>@schedule.date.toString("yyyy")/@schedule.month</th>
     </tr>
   </thead>
   <tbody>
