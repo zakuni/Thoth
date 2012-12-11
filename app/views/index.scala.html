@@ -1,12 +1,14 @@
 @(sports: List[Sport])
 
 @main("THOTH") {
-<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+<a class="hidden-phone" href="https://github.com/zakuni/thoth"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
 <div class="page-header">
   <h1>THOTH</h1>
 </div>
 <h2>Sports</h2>
-<ul>
+<ul class="nav nav-pills nav-stacked">
   @sports.map { sport =>
   <li>
     <a href='/@sport.name.toLowerCase'>
