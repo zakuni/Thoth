@@ -3,37 +3,54 @@
 
 @main("THOTH") {
 
-<div class="page-header">
+<div class="page-header hidden-phone">
   <h1><a href='/'>THOTH</a></h1>
 </div>
-<h2>@sport.name <small>ref. <a href="@sport.ref(1)">@sport.ref(0)</a></small></h2>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th colspan=2>@schedule.date.toString("yyyy")/@schedule.month</th>
-    </tr>
-  </thead>
-  <tbody>
-    @schedule.games.map { game =>
-    @game._2.zipWithIndex.map{case(g, i) =>
-    <tr>
-      @if(i == 0){
-      <td rowspan=@game._2.length>@game._1.toString("dd EEE")</td>
-      }
-      <td>@g</td>
-    </tr>
-    }
-    }
-  </tbody>
-</table>
-<ul class="pager">
-  <li class="previous">
-    <a href="/@sport.name.toLowerCase/@schedule.previousMonth">&larr; @schedule.previousMonth</a>
-  </li>
-  <li class="next">
-    <a href="/@sport.name.toLowerCase/@schedule.nextMonth">@schedule.nextMonth &rarr;</a>
-  </li>
-</ul>
-
+<div class="row">
+  <div class="span2">
+    <ul class="well nav nav-list hidden-phone">
+      <li>
+        <a href="../badminton">Badminton</a>
+      </li>
+      <li>
+        <a href="../futsal">Futsal</a>
+      </li>
+      <li>
+        <a href="">Rugby</a>
+      </li>
+    </ul>
+  </div>
+  <div class="span10">
+    <h2>@sport.name</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th colspan=2>@schedule.date.toString("yyyy")/@schedule.month</th>
+        </tr>
+      </thead>
+      <tbody>
+        @schedule.games.map { game =>
+        @game._2.zipWithIndex.map{case(g, i) =>
+        <tr>
+          @if(i == 0){
+          <td rowspan=@game._2.length>@game._1.toString("dd EEE")</td>
+          }
+          <td>@g</td>
+        </tr>
+        }
+        }
+      </tbody>
+    </table>
+    <div class="alert alert-info">
+      <strong>ref. </strong><a href="@sport.ref(1)">@sport.ref(0)</a>
+    </div>
+    <ul class="pager">
+      <li class="previous">
+        <a href="/@sport.name.toLowerCase/@schedule.previousMonth">&larr; @schedule.previousMonth</a>
+      </li>
+      <li class="next">
+        <a href="/@sport.name.toLowerCase/@schedule.nextMonth">@schedule.nextMonth &rarr;</a>
+      </li>
+    </ul>
+  </div>
 }

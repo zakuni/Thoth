@@ -13,6 +13,8 @@ object Application extends Controller {
     Ok(views.html.index(list))
   }
 
+  def all = TODO
+
   def sport(sport: String) = Action {
     val s: Sport = sport match { 
       case "rugby"     => { new Rugby }

@@ -12,6 +12,30 @@
         <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
     </head>
     <body>
+      <div class="navbar navbar-inverse navbar-fixed-top visible-phone">
+        <div class="navbar-inner">
+          <a class="brand" href="#">THOTH</a>
+          <ul class="nav">
+            <li class="dropdown active">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Sport
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="./badminton">Badminton</a>
+                </li>
+                <li>
+                  <a href="./futsal">Futsal</a>
+                </li>
+                <li>
+                  <a href="./rugby">Rugby</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
       <div class="container">
         @content
       </div>
