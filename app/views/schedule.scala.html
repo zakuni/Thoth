@@ -8,7 +8,8 @@
 </div>
 <div class="row">
   <div class="span2">
-    <ul class="well nav nav-list hidden-phone">
+    <ul class="well well-small nav nav-list hidden-phone">
+      <li class="nav-header">Sports</li>
       <li>
         <a href="../badminton">Badminton</a>
       </li>
@@ -41,9 +42,8 @@
         }
       </tbody>
     </table>
-    <div class="alert alert-info">
-      <strong>ref. </strong><a href="@sport.ref(1)">@sport.ref(0)</a>
-    </div>
+    <span class="label label-info">Ref.</span>
+    <a href="@sport.ref(1)">@sport.ref(0)</a>
     <ul class="pager">
       <li class="previous">
         <a href="/@sport.name.toLowerCase/@schedule.previousMonth">&larr; @schedule.previousMonth</a>
