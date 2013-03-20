@@ -1,6 +1,6 @@
 package models
 import scala.collection.mutable.ListBuffer
-import org.scala_tools.time.Imports._
+import com.github.nscala_time.time.Imports._
 
 class Futsal extends Sport("Futsal") { 
   val ref = List("", "")

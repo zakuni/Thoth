@@ -6,7 +6,7 @@ import scala.xml.parsing.NoBindingFactoryAdapter
 import dispatch._
 import nu.validator.htmlparser.common.XmlViolationPolicy
 import nu.validator.htmlparser.sax.HtmlParser
-import org.scala_tools.time.Imports._
+import com.github.nscala_time.time.Imports._
 import org.xml.sax.InputSource
 
 abstract class Sport(val name: String, var date: DateTime=DateTime.now) {

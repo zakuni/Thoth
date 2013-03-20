@@ -1,6 +1,6 @@
 import sbt._
 import Keys._
-import PlayProject._
+import play.Project._
 
 object ApplicationBuild extends Build {
 
@@ -11,10 +11,10 @@ object ApplicationBuild extends Build {
       // Add your project dependencies here,
       "net.databinder" %% "dispatch-http" % "0.8.8",
       "nu.validator.htmlparser" % "htmlparser" % "1.4",
-      "org.scalaj" %% "scalaj-time" % "0.6"
+      "com.github.nscala-time" %% "nscala-time" % "0.2.0"
     )
 
-    val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
+    val main = play.Project(appName, appVersion, appDependencies).settings(
       // Add your own project settings here      
     )
 
