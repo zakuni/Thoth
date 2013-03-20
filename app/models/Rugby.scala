@@ -3,7 +3,7 @@ import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.{Map => MutableMap}
 import scala.xml.Text
 import scala.xml.XML
-import org.scala_tools.time.Imports._
+import com.github.nscala_time.time.Imports._
 
 class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
   val ref = List("ラグビーカレンダー - 日本ラグビーフットボール協会（JRFU）", "http://www.rugby-japan.jp/calendar/index.html")
