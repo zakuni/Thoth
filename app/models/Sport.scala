@@ -13,22 +13,22 @@ abstract class Sport(val name: String, var date: DateTime=DateTime.now) {
   val ref: List[String]
   lazy val schedule = requestSchedule(date)
 
-  def toNode(is: InputStream): Node = {
-    val hp = new HtmlParser
-    hp.setNamePolicy(XmlViolationPolicy.ALLOW)
+  protected def requestSchedule(date: DateTime): Schedule
 
-    val saxer = new NoBindingFactoryAdapter
-    hp.setContentHandler(saxer)
-    hp.parse(new InputSource(is))
-
-    saxer.rootElem
+  protected def request(siteUrl: String): Http.HttpPackage[Node] = { 
+    val u = url(siteUrl) >> { is => toNode(is) }
+    val http = new Http
+    http(u)
   }
 
-  def requestSchedule(date: DateTime): Schedule
+  private def toNode(inputStream: InputStream): Node = {
+    val htmlParser = new HtmlParser
+    htmlParser.setNamePolicy(XmlViolationPolicy.ALLOW)
 
-  protected def request(siteUrl: String): Http.HttpPackage[scala.xml.Node] = { 
-    val u = url(siteUrl) >> { is => toNode(is) }
-    val h = new Http
-    h(u)
+    val saxer = new NoBindingFactoryAdapter
+    htmlParser.setContentHandler(saxer)
+    htmlParser.parse(new InputSource(inputStream))
+
+    saxer.rootElem
   }
 }
