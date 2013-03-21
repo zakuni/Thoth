@@ -1,8 +1,10 @@
 package models
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.{Map => MutableMap}
+import scala.xml.Node
 import scala.xml.Text
 import scala.xml.XML
+import dispatch._
 import com.github.nscala_time.time.Imports._
 
 class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
@@ -14,6 +16,11 @@ class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
     val year = date.toString("yyyy")
     val month = date.toString("MM")
     val node = request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(year, month))
+    val m = parseNode(node)
+    new Schedule(year.toInt, month.toInt, m)
+  }
+
+  def parseNode(node: Http.HttpPackage[Node]): Map[DateTime, ListBuffer[String]] = {
     val cal_main = node \\ "div" filter (_ \ "@id" contains Text("cal_main"))
     val trs = (cal_main \\ "tr").theSeq
 
@@ -40,6 +47,6 @@ class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
         }
       }
     }
-    new Schedule(year.toInt, month.toInt, m.toMap)
+    m.toMap
   }
 }
