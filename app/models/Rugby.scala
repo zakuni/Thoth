@@ -4,6 +4,8 @@ import scala.collection.mutable.{Map => MutableMap}
 import scala.xml.Node
 import scala.xml.Text
 import scala.xml.XML
+import play.api.cache.Cache
+import play.api.Play.current
 import dispatch._
 import com.github.nscala_time.time.Imports._
 
@@ -15,7 +17,7 @@ class Rugby(date: DateTime=DateTime.now) extends Sport("Rugby", date) {
   def requestSchedule(date: DateTime): Schedule = {
     val year = date.toString("yyyy")
     val month = date.toString("MM")
-    val node = request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(year, month))
+    val node = Cache.getOrElse[Http.HttpPackage[Node]]("rugby%s%s".format(year, month)){ request("http://www.rugby-japan.jp/calendar/calendar_%s_%s.html".format(year, month)) }
     val m = parseNode(node)
     new Schedule(year.toInt, month.toInt, m)
   }
