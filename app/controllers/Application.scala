@@ -1,16 +1,20 @@
 package controllers
 
 import play.api._
+import play.api.cache.Cached
 import play.api.mvc._
+import play.api.Play.current
 import models._
 
 object Application extends Controller {
   
-  def index = Action {
-    val list = List(new Badminton,
-                    new Futsal,
-                    new Rugby)
-    Ok(views.html.index(list))
+  def index = Cached("index") {
+    Action {
+      val list = List(new Badminton,
+                      new Futsal,
+                      new Rugby)
+      Ok(views.html.index(list))
+    }
   }
 
   def all = TODO
